@@ -23,6 +23,7 @@ services:
         volumes:
             - .project.sql:/docker-entrypoint-initdb.d
             - persistent:/var/lib/mysql
+            - .:/var/www/html/
         networks:
             - default
     phpmyadmin:
