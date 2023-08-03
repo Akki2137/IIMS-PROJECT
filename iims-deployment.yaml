@@ -1,0 +1,13 @@
+- name: Build and deploy docker container
+  hosts: docker-server
+  gather_facts: false
+  remote_user: root
+  tasks:
+
+- name: Building Docker image
+      docker_image:
+        name: mico:latest
+        source: build
+        build:
+          path: ~/project/
+        state: present
