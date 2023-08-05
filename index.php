@@ -185,13 +185,13 @@ var b = document.forms["form"]["cpassword"].value;if (a!=b){alert("Passwords mus
 <a href="feedback.php" target="_blank">Feedback</a></div>
 <div class="col-md3 box">
 <a href="faculty/index.html" target="_blank">Faculty</a></div>
-</div>
+
 <div class="col-md-3 box">
 <a href="https://portfolio-akshay.my.canva.site/" target="_blank">About Me</a>
 </div>
 <div class="col-md-3 box">
 <a href="#" data-toggle="modal" data-target="#login">Admin Login</a></div>
-
+</div>
 <!-- Modal For Developers-->
 <div class="modal fade title1" id="developers">
   <div class="modal-dialog">
