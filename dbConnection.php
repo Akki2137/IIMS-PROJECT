@@ -6,16 +6,16 @@ $password = "abcd1234";  // MySQL password (from docker-compose.yml)
 $database = "project";  // MySQL database name (from docker-compose.yml)
 
 // Create a connection
-$conn = new mysqli($host, $username, $password, $database, $port);
+$con = new mysqli($host, $username, $password, $database, $port);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
 }
 
 // Perform database operations
 // Example: $result = $conn->query("SELECT * FROM your_table");
 
 // Close the connection when you're done
-$conn->close();
+$con->close();
 ?>
