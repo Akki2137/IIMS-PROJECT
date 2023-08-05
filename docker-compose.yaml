@@ -33,8 +33,11 @@ services:
         ports:  
             - 82:80
         environment:
-            MYSQL_USER: root
-            MYSQL_PASSWORD: abcd1234
-            MYSQL_ROOT_PASSWORD: admin
+            PMA_HOST: db
+            PMA_USER: root
+            PMA_PASSWORD: abcd1234
+            # MYSQL_USER: root
+            # MYSQL_PASSWORD: abcd1234
+            # MYSQL_ROOT_PASSWORD: admin
 volumes:
     persistent:
