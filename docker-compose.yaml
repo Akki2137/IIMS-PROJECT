@@ -1,43 +1,41 @@
----
-version: "2"
+version: '3.9'
+
 services:
-    www:
-        build: .
-        ports:
-            - "80:80"
-        volumes:
-            - .:/var/www/html/
-        links:
-            - db
-        networks:
-            - default
-    db:
-        image: mysql:5.7.28
-        ports:
-            - "3306:3306"
-        environment:
-            MYSQL_DATABASE: project
-            MYSQL_USER: root
-            MYSQL_PASSWORD: abcd1234
-            MYSQL_ROOT_PASSWORD: admin
-        volumes:
-            - ./dump:/docker-entrypoint-initdb.d
-            - persistent:/var/lib/mysql
- #           - .:/var/www/html/
-        networks:
-            - default
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        links:
-            - db:db
-        ports:  
-            - 82:80
-        environment:
-            PMA_HOST: db
-            PMA_USER: root
-            PMA_PASSWORD: abcd1234
-            # MYSQL_USER: root
-            # MYSQL_PASSWORD: abcd1234
-            # MYSQL_ROOT_PASSWORD: admin
-volumes:
-    persistent:
+  mysql-db:
+    image: mysql:8
+    container_name: mysql_db_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: project
+      MYSQL_USER: akshay
+      MYSQL_PASSWORD: akshay
+    networks:
+      - app_net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin_container
+    restart: always
+    ports:
+      - "9000:80"
+    environment:
+      PMA_HOST: mysql-db
+      PMA_USER: akshay
+      PMA_PASSWORD: akshay
+    networks:
+      - app_net
+
+  php-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_app_container
+    ports:
+      - "80:80"
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge
